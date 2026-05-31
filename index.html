@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manga Tracking Library</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">📚 Tủ Truyện Của Tôi</div>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Tìm tên truyện, tác giả, thể loại...">
+            <i class="fas fa-search"></i>
+        </div>
+    </header>
+
+    <div class="filter-container">
+        <button class="filter-btn active" data-filter="all">Tất cả</button>
+        <button class="filter-btn" data-filter="completed">Đã xong</button>
+        <button class="filter-btn" data-filter="reading">Đang đọc</button>
+    </div>
+
+    <main class="manga-grid" id="mangaGrid">
+        <p style="grid-column: 1/-1; text-align: center; color: #7f8c8d;">Đang kết nối và tải dữ liệu từ Google Sheets...</p>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
