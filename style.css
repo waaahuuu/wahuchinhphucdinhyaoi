@@ -1,9 +1,14 @@
 :root {
-    --primary-color: #e67e22; 
-    --bg-color: #f5f6fa;
-    --card-bg: #ffffff;
-    --text-color: #2c3e50;
-    --text-muted: #7f8c8d;
+    --primary-color: #3498db;       /* Màu xanh biển dịu */
+    --primary-hover: #2980b9;       /* Xanh biển đậm khi di chuột */
+    --bg-color: #f4f7f6;            /* Nền xám nhạt dịu mắt */
+    --card-bg: #ffffff;             /* Nền trắng cho thẻ truyện */
+    --text-color: #2c3e50;          /* Màu chữ chính */
+    --text-muted: #7f8c8d;          /* Màu chữ phụ nhạt */
+    --tag-completed-bg: #e8f8f5;    /* Nền nhãn đã xong */
+    --tag-completed-text: #1abc9c;  /* Chữ nhãn đã xong */
+    --tag-reading-bg: #ebf5fb;      /* Nền nhãn đang đọc */
+    --tag-reading-text: #2980b9;    /* Chữ nhãn đang đọc */
 }
 
 * {
@@ -25,36 +30,44 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     position: sticky;
     top: 0;
     z-index: 100;
 }
 
 .logo {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: bold;
     color: var(--primary-color);
+    letter-spacing: 0.5px;
 }
 
 .search-box {
     position: relative;
-    width: 300px;
+    width: 320px;
 }
 
 .search-box input {
     width: 100%;
-    padding: 8px 35px 8px 15px;
+    padding: 10px 40px 10px 18px;
     border: 1px solid #dcdde1;
-    border-radius: 20px;
+    border-radius: 25px;
     outline: none;
+    font-size: 0.9rem;
     transition: 0.3s;
+    background-color: #f8f9fa;
 }
 
-.search-box input:focus { border-color: var(--primary-color); }
+.search-box input:focus { 
+    border-color: var(--primary-color); 
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
 .search-box i {
     position: absolute;
-    right: 15px;
+    right: 18px;
     top: 50%;
     transform: translateY(-50%);
     color: var(--text-muted);
@@ -63,18 +76,19 @@ header {
 .filter-container {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin: 25px 0;
+    gap: 12px;
+    margin: 30px 0;
 }
 
 .filter-btn {
-    padding: 8px 22px;
+    padding: 8px 24px;
     border: 1px solid #dcdde1;
     background-color: #fff;
     color: var(--text-color);
     border-radius: 20px;
     cursor: pointer;
     font-weight: 500;
+    font-size: 0.9rem;
     transition: 0.3s;
 }
 
@@ -86,30 +100,33 @@ header {
 
 .manga-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 30px;
     padding: 0 5%;
 }
 
-/* THẺ TRUYỆN CỐ ĐỊNH - CHỐNG GIẬT TUYỆT ĐỐI */
+/* KHUNG THẺ TRUYỆN CỐ ĐỊNH - CHỐNG GIẬT CHỮ TUYỆT ĐỐI */
 .manga-card {
     background-color: var(--card-bg);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    transition: transform 0.3s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    transition: transform 0.3s, box-shadow 0.3s;
     display: flex;
     flex-direction: column;
-    height: 420px; 
+    height: 460px; /* Tăng tổng chiều cao để vừa khung hình dài */
 }
 
-.manga-card:hover { transform: translateY(-5px); }
+.manga-card:hover { 
+    transform: translateY(-6px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
 
-/* KHUNG ẢNH BÌA CỐ ĐỊNH CHIỀU CAO */
+/* LÀM KHUNG HÌNH DÀI HƠN ĐỂ FIT ẢNH BÌA TRUYỆN TRANH */
 .cover-container {
     width: 100%;
-    height: 260px;
-    background-color: #eaedd0;
+    height: 300px; /* Tăng chiều cao từ 250px lên 300px giúp fit hình dọc */
+    background-color: #eef2f5;
     position: relative;
     overflow: hidden;
 }
@@ -117,13 +134,13 @@ header {
 .manga-cover {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* Giúp ảnh tự co giãn fit khít khung, không bị méo */
     display: block;
 }
 
-/* KHU VỰC CHỮ CỐ ĐỊNH CHIỀU CAO */
+/* KHU VỰC THÔNG TIN CHỮ CỐ ĐỊNH CHIỀU CAO */
 .manga-info {
-    padding: 12px;
+    padding: 14px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -132,7 +149,7 @@ header {
 }
 
 .manga-title {
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 600;
     line-height: 1.3;
     height: 2.6rem; 
@@ -141,6 +158,7 @@ header {
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: #2c3e50;
 }
 
 .manga-author {
@@ -149,31 +167,32 @@ header {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-top: 2px;
+    margin-top: 4px;
+    display: block;
 }
 
 .status-tag {
     align-self: flex-start;
-    padding: 2px 8px;
-    border-radius: 6px;
+    padding: 3px 10px;
+    border-radius: 20px;
     font-size: 0.75rem;
-    font-weight: bold;
+    font-weight: 600;
 }
 
-.status-completed { background-color: #d4edda; color: #155724; }
-.status-reading { background-color: #cce5ff; color: #004085; }
+.status-completed { background-color: var(--tag-completed-bg); color: var(--tag-completed-text); }
+.status-reading { background-color: var(--tag-reading-bg); color: var(--tag-reading-text); }
 
-/* CO GIÃN MƯỢT MÀ TRÊN ĐIỆN THOẠI */
+/* ĐÁP ỨNG TRÊN GIAO DIỆN ĐIỆN THOẠI */
 @media (max-width: 600px) {
-    header { flex-direction: column; gap: 12px; }
+    header { flex-direction: column; gap: 15px; padding: 15px 3%; }
     .search-box { width: 100%; }
     .manga-grid {
-        grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: 15px;
         padding: 0 3%;
     }
-    .manga-card { height: 340px; }
-    .cover-container { height: 190px; }
-    .manga-info { height: 150px; }
+    .manga-card { height: 380px; }
+    .cover-container { height: 220px; }
+    .manga-info { height: 160px; padding: 10px; }
     .manga-title { height: 2.4rem; font-size: 0.85rem; }
 }
